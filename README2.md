@@ -34,6 +34,19 @@ HQL is implemented as a complete language processing system, consisting of:
 4. **Execution Engine**: Orchestrates the entire process and formats results for display.
 5. **Web & CLI Interfaces**: Provides multiple ways to interact with the system.
 
+## Features of the project
+
+1. **Natural Language-Like Syntax**: Queries written in HQL closely resemble English sentences, making them intuitive for healthcare professionals.
+2. **Specialized Healthcare Commands**: Purpose-built commands for medical data analysis and patient monitoring.
+3. **Robust Data Filtering**: Complex conditional expressions to identify specific patient cohorts.
+4. **Statistical Analysis**: Built-in aggregations (average, count, max, min) for healthcare metrics.
+5. **Multi-platform Support**: Works through web browsers, command line, or integrated into other systems.
+6. **Visualization Capabilities**: Presents query results as charts and graphs for better interpretation.
+7. **Real-time Monitoring**: Continuous evaluation of patient data against alert conditions.
+8. **Extensible Framework**: Modular architecture that allows for adding new commands and capabilities.
+9. **CSV Data Support**: Works with standard CSV files containing patient records.
+10. **Error Handling**: User-friendly error messages specific to healthcare query contexts.
+
 ## Key Features
 
 ### 1. Three Core Command Types
@@ -98,7 +111,7 @@ HQL's architecture follows the classic compiler/interpreter design pattern:
    ```
 3. Launch the application:
    ```bash
-   python launch_hql.py
+   python launch_hql.py --web
    ```
 
 ## Use Cases with Examples
@@ -151,6 +164,18 @@ The HQL project could expand to include:
 3. **Machine Learning**: Integration with predictive analytics and AI models
 4. **Mobile Interface**: Smartphone access for on-the-go healthcare professionals
 5. **Natural Language Processing**: Ability to ask questions in completely natural language
+
+## Extending HQL
+
+The HQL system is modular and extensible:
+
+1. **Lexer** (`lexer.py`): Tokenizes the input commands
+2. **Parser** (`parser.py`): Transforms tokens into an abstract syntax tree (AST)
+3. **Interpreter** (`interpreter.py`): Executes the AST on the patient data
+4. **Engine** (`hql.py`): Orchestrates the overall process and formats results
+5. **Web Frontend** (`web_app.py`): Provides a browser-based user interface
+
+You can extend the language by modifying these components.
 
 ## Technical Requirements
 
