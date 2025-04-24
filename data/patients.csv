@@ -1,0 +1,11 @@
+patient_id,name,age,gender,blood_pressure,heart_rate,oxygen_level,diabetes,hypertension,asthma
+1,John Smith,62,M,145/90,72,98,yes,yes,no
+2,Emily Johnson,45,F,120/80,68,99,no,no,no
+3,Michael Davis,58,M,130/85,75,97,yes,no,no
+4,Sarah Wilson,72,F,150/95,80,96,yes,yes,no
+5,Robert Brown,35,M,118/75,65,99,no,no,no
+6,Linda Miller,68,F,142/88,78,95,yes,yes,no
+7,William Moore,54,M,135/82,70,98,no,yes,no
+8,Jessica Taylor,41,F,122/78,68,99,no,no,yes
+9,Thomas Anderson,76,M,155/92,85,94,yes,yes,no
+10,Jennifer White,52,F,125/80,72,97,no,no,no

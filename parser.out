@@ -1,0 +1,512 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> command
+Rule 1     command -> find_command
+Rule 2     command -> show_command
+Rule 3     command -> alert_command
+Rule 4     find_command -> FIND ID where_clause
+Rule 5     show_command -> SHOW aggregate_function ID FOR ID WITH condition
+Rule 6     show_command -> SHOW aggregate_function ID FOR ID WITH ID EQ value
+Rule 7     alert_command -> ALERT IF condition
+Rule 8     where_clause -> WHERE condition
+Rule 9     condition -> expression
+Rule 10    condition -> expression AND condition
+Rule 11    condition -> expression OR condition
+Rule 12    expression -> ID comparison_op value
+Rule 13    comparison_op -> GT
+Rule 14    comparison_op -> LT
+Rule 15    comparison_op -> EQ
+Rule 16    comparison_op -> GEQ
+Rule 17    comparison_op -> LEQ
+Rule 18    comparison_op -> NEQ
+Rule 19    value -> NUMBER
+Rule 20    value -> STRING
+Rule 21    value -> ID
+Rule 22    aggregate_function -> AVERAGE
+Rule 23    aggregate_function -> COUNT
+Rule 24    aggregate_function -> MAX
+Rule 25    aggregate_function -> MIN
+
+Terminals, with rules where they appear
+
+ALERT                : 7
+AND                  : 10
+AVERAGE              : 22
+COUNT                : 23
+EQ                   : 6 15
+FIND                 : 4
+FOR                  : 5 6
+GEQ                  : 16
+GT                   : 13
+ID                   : 4 5 5 6 6 6 12 21
+IF                   : 7
+LEQ                  : 17
+LT                   : 14
+MAX                  : 24
+MIN                  : 25
+NEQ                  : 18
+NUMBER               : 19
+OR                   : 11
+SHOW                 : 5 6
+STRING               : 20
+WHERE                : 8
+WITH                 : 5 6
+error                : 
+
+Nonterminals, with rules where they appear
+
+aggregate_function   : 5 6
+alert_command        : 3
+command              : 0
+comparison_op        : 12
+condition            : 5 7 8 10 11
+expression           : 9 10 11
+find_command         : 1
+show_command         : 2
+value                : 6 12
+where_clause         : 4
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . command
+    (1) command -> . find_command
+    (2) command -> . show_command
+    (3) command -> . alert_command
+    (4) find_command -> . FIND ID where_clause
+    (5) show_command -> . SHOW aggregate_function ID FOR ID WITH condition
+    (6) show_command -> . SHOW aggregate_function ID FOR ID WITH ID EQ value
+    (7) alert_command -> . ALERT IF condition
+
+    FIND            shift and go to state 5
+    SHOW            shift and go to state 6
+    ALERT           shift and go to state 7
+
+    command                        shift and go to state 1
+    find_command                   shift and go to state 2
+    show_command                   shift and go to state 3
+    alert_command                  shift and go to state 4
+
+state 1
+
+    (0) S' -> command .
+
+
+
+state 2
+
+    (1) command -> find_command .
+
+    $end            reduce using rule 1 (command -> find_command .)
+
+
+state 3
+
+    (2) command -> show_command .
+
+    $end            reduce using rule 2 (command -> show_command .)
+
+
+state 4
+
+    (3) command -> alert_command .
+
+    $end            reduce using rule 3 (command -> alert_command .)
+
+
+state 5
+
+    (4) find_command -> FIND . ID where_clause
+
+    ID              shift and go to state 8
+
+
+state 6
+
+    (5) show_command -> SHOW . aggregate_function ID FOR ID WITH condition
+    (6) show_command -> SHOW . aggregate_function ID FOR ID WITH ID EQ value
+    (22) aggregate_function -> . AVERAGE
+    (23) aggregate_function -> . COUNT
+    (24) aggregate_function -> . MAX
+    (25) aggregate_function -> . MIN
+
+    AVERAGE         shift and go to state 10
+    COUNT           shift and go to state 11
+    MAX             shift and go to state 12
+    MIN             shift and go to state 13
+
+    aggregate_function             shift and go to state 9
+
+state 7
+
+    (7) alert_command -> ALERT . IF condition
+
+    IF              shift and go to state 14
+
+
+state 8
+
+    (4) find_command -> FIND ID . where_clause
+    (8) where_clause -> . WHERE condition
+
+    WHERE           shift and go to state 16
+
+    where_clause                   shift and go to state 15
+
+state 9
+
+    (5) show_command -> SHOW aggregate_function . ID FOR ID WITH condition
+    (6) show_command -> SHOW aggregate_function . ID FOR ID WITH ID EQ value
+
+    ID              shift and go to state 17
+
+
+state 10
+
+    (22) aggregate_function -> AVERAGE .
+
+    ID              reduce using rule 22 (aggregate_function -> AVERAGE .)
+
+
+state 11
+
+    (23) aggregate_function -> COUNT .
+
+    ID              reduce using rule 23 (aggregate_function -> COUNT .)
+
+
+state 12
+
+    (24) aggregate_function -> MAX .
+
+    ID              reduce using rule 24 (aggregate_function -> MAX .)
+
+
+state 13
+
+    (25) aggregate_function -> MIN .
+
+    ID              reduce using rule 25 (aggregate_function -> MIN .)
+
+
+state 14
+
+    (7) alert_command -> ALERT IF . condition
+    (9) condition -> . expression
+    (10) condition -> . expression AND condition
+    (11) condition -> . expression OR condition
+    (12) expression -> . ID comparison_op value
+
+    ID              shift and go to state 20
+
+    condition                      shift and go to state 18
+    expression                     shift and go to state 19
+
+state 15
+
+    (4) find_command -> FIND ID where_clause .
+
+    $end            reduce using rule 4 (find_command -> FIND ID where_clause .)
+
+
+state 16
+
+    (8) where_clause -> WHERE . condition
+    (9) condition -> . expression
+    (10) condition -> . expression AND condition
+    (11) condition -> . expression OR condition
+    (12) expression -> . ID comparison_op value
+
+    ID              shift and go to state 20
+
+    condition                      shift and go to state 21
+    expression                     shift and go to state 19
+
+state 17
+
+    (5) show_command -> SHOW aggregate_function ID . FOR ID WITH condition
+    (6) show_command -> SHOW aggregate_function ID . FOR ID WITH ID EQ value
+
+    FOR             shift and go to state 22
+
+
+state 18
+
+    (7) alert_command -> ALERT IF condition .
+
+    $end            reduce using rule 7 (alert_command -> ALERT IF condition .)
+
+
+state 19
+
+    (9) condition -> expression .
+    (10) condition -> expression . AND condition
+    (11) condition -> expression . OR condition
+
+    $end            reduce using rule 9 (condition -> expression .)
+    AND             shift and go to state 23
+    OR              shift and go to state 24
+
+
+state 20
+
+    (12) expression -> ID . comparison_op value
+    (13) comparison_op -> . GT
+    (14) comparison_op -> . LT
+    (15) comparison_op -> . EQ
+    (16) comparison_op -> . GEQ
+    (17) comparison_op -> . LEQ
+    (18) comparison_op -> . NEQ
+
+    GT              shift and go to state 26
+    LT              shift and go to state 27
+    EQ              shift and go to state 28
+    GEQ             shift and go to state 29
+    LEQ             shift and go to state 30
+    NEQ             shift and go to state 31
+
+    comparison_op                  shift and go to state 25
+
+state 21
+
+    (8) where_clause -> WHERE condition .
+
+    $end            reduce using rule 8 (where_clause -> WHERE condition .)
+
+
+state 22
+
+    (5) show_command -> SHOW aggregate_function ID FOR . ID WITH condition
+    (6) show_command -> SHOW aggregate_function ID FOR . ID WITH ID EQ value
+
+    ID              shift and go to state 32
+
+
+state 23
+
+    (10) condition -> expression AND . condition
+    (9) condition -> . expression
+    (10) condition -> . expression AND condition
+    (11) condition -> . expression OR condition
+    (12) expression -> . ID comparison_op value
+
+    ID              shift and go to state 20
+
+    expression                     shift and go to state 19
+    condition                      shift and go to state 33
+
+state 24
+
+    (11) condition -> expression OR . condition
+    (9) condition -> . expression
+    (10) condition -> . expression AND condition
+    (11) condition -> . expression OR condition
+    (12) expression -> . ID comparison_op value
+
+    ID              shift and go to state 20
+
+    expression                     shift and go to state 19
+    condition                      shift and go to state 34
+
+state 25
+
+    (12) expression -> ID comparison_op . value
+    (19) value -> . NUMBER
+    (20) value -> . STRING
+    (21) value -> . ID
+
+    NUMBER          shift and go to state 37
+    STRING          shift and go to state 38
+    ID              shift and go to state 35
+
+    value                          shift and go to state 36
+
+state 26
+
+    (13) comparison_op -> GT .
+
+    NUMBER          reduce using rule 13 (comparison_op -> GT .)
+    STRING          reduce using rule 13 (comparison_op -> GT .)
+    ID              reduce using rule 13 (comparison_op -> GT .)
+
+
+state 27
+
+    (14) comparison_op -> LT .
+
+    NUMBER          reduce using rule 14 (comparison_op -> LT .)
+    STRING          reduce using rule 14 (comparison_op -> LT .)
+    ID              reduce using rule 14 (comparison_op -> LT .)
+
+
+state 28
+
+    (15) comparison_op -> EQ .
+
+    NUMBER          reduce using rule 15 (comparison_op -> EQ .)
+    STRING          reduce using rule 15 (comparison_op -> EQ .)
+    ID              reduce using rule 15 (comparison_op -> EQ .)
+
+
+state 29
+
+    (16) comparison_op -> GEQ .
+
+    NUMBER          reduce using rule 16 (comparison_op -> GEQ .)
+    STRING          reduce using rule 16 (comparison_op -> GEQ .)
+    ID              reduce using rule 16 (comparison_op -> GEQ .)
+
+
+state 30
+
+    (17) comparison_op -> LEQ .
+
+    NUMBER          reduce using rule 17 (comparison_op -> LEQ .)
+    STRING          reduce using rule 17 (comparison_op -> LEQ .)
+    ID              reduce using rule 17 (comparison_op -> LEQ .)
+
+
+state 31
+
+    (18) comparison_op -> NEQ .
+
+    NUMBER          reduce using rule 18 (comparison_op -> NEQ .)
+    STRING          reduce using rule 18 (comparison_op -> NEQ .)
+    ID              reduce using rule 18 (comparison_op -> NEQ .)
+
+
+state 32
+
+    (5) show_command -> SHOW aggregate_function ID FOR ID . WITH condition
+    (6) show_command -> SHOW aggregate_function ID FOR ID . WITH ID EQ value
+
+    WITH            shift and go to state 39
+
+
+state 33
+
+    (10) condition -> expression AND condition .
+
+    $end            reduce using rule 10 (condition -> expression AND condition .)
+
+
+state 34
+
+    (11) condition -> expression OR condition .
+
+    $end            reduce using rule 11 (condition -> expression OR condition .)
+
+
+state 35
+
+    (21) value -> ID .
+
+    AND             reduce using rule 21 (value -> ID .)
+    OR              reduce using rule 21 (value -> ID .)
+    $end            reduce using rule 21 (value -> ID .)
+
+
+state 36
+
+    (12) expression -> ID comparison_op value .
+
+    AND             reduce using rule 12 (expression -> ID comparison_op value .)
+    OR              reduce using rule 12 (expression -> ID comparison_op value .)
+    $end            reduce using rule 12 (expression -> ID comparison_op value .)
+
+
+state 37
+
+    (19) value -> NUMBER .
+
+    AND             reduce using rule 19 (value -> NUMBER .)
+    OR              reduce using rule 19 (value -> NUMBER .)
+    $end            reduce using rule 19 (value -> NUMBER .)
+
+
+state 38
+
+    (20) value -> STRING .
+
+    AND             reduce using rule 20 (value -> STRING .)
+    OR              reduce using rule 20 (value -> STRING .)
+    $end            reduce using rule 20 (value -> STRING .)
+
+
+state 39
+
+    (5) show_command -> SHOW aggregate_function ID FOR ID WITH . condition
+    (6) show_command -> SHOW aggregate_function ID FOR ID WITH . ID EQ value
+    (9) condition -> . expression
+    (10) condition -> . expression AND condition
+    (11) condition -> . expression OR condition
+    (12) expression -> . ID comparison_op value
+
+    ID              shift and go to state 40
+
+    condition                      shift and go to state 41
+    expression                     shift and go to state 19
+
+state 40
+
+    (6) show_command -> SHOW aggregate_function ID FOR ID WITH ID . EQ value
+    (12) expression -> ID . comparison_op value
+    (13) comparison_op -> . GT
+    (14) comparison_op -> . LT
+    (15) comparison_op -> . EQ
+    (16) comparison_op -> . GEQ
+    (17) comparison_op -> . LEQ
+    (18) comparison_op -> . NEQ
+
+    EQ              shift and go to state 42
+    GT              shift and go to state 26
+    LT              shift and go to state 27
+    GEQ             shift and go to state 29
+    LEQ             shift and go to state 30
+    NEQ             shift and go to state 31
+
+    comparison_op                  shift and go to state 25
+
+state 41
+
+    (5) show_command -> SHOW aggregate_function ID FOR ID WITH condition .
+
+    $end            reduce using rule 5 (show_command -> SHOW aggregate_function ID FOR ID WITH condition .)
+
+
+state 42
+
+    (6) show_command -> SHOW aggregate_function ID FOR ID WITH ID EQ . value
+    (15) comparison_op -> EQ .
+    (19) value -> . NUMBER
+    (20) value -> . STRING
+    (21) value -> . ID
+
+  ! shift/reduce conflict for NUMBER resolved as shift
+  ! shift/reduce conflict for STRING resolved as shift
+  ! shift/reduce conflict for ID resolved as shift
+    NUMBER          shift and go to state 37
+    STRING          shift and go to state 38
+    ID              shift and go to state 35
+
+  ! NUMBER          [ reduce using rule 15 (comparison_op -> EQ .) ]
+  ! STRING          [ reduce using rule 15 (comparison_op -> EQ .) ]
+  ! ID              [ reduce using rule 15 (comparison_op -> EQ .) ]
+
+    value                          shift and go to state 43
+
+state 43
+
+    (6) show_command -> SHOW aggregate_function ID FOR ID WITH ID EQ value .
+
+    $end            reduce using rule 6 (show_command -> SHOW aggregate_function ID FOR ID WITH ID EQ value .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for NUMBER in state 42 resolved as shift
+WARNING: shift/reduce conflict for STRING in state 42 resolved as shift
+WARNING: shift/reduce conflict for ID in state 42 resolved as shift

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Query Language (HQL)</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <h1><i class="fas fa-heartbeat"></i> Health Query Language (HQL)</h1>
+        <p>A domain-specific language for healthcare data analysis</p>
+    </header>
+
+    <main>
+        <div class="main-content">
+            <div class="query-box">
+                <h2>Enter Your HQL Query</h2>
+                <textarea id="query-input" placeholder="e.g. FIND patients WHERE age > 60 AND blood_pressure > 140"></textarea>
+                <div class="button-group">
+                    <button id="execute-btn" class="primary-btn">Execute Query</button>
+                    <button id="clear-btn" class="secondary-btn">Clear</button>
+                </div>
+            </div>
+
+            <div class="sample-grid">
+                <div class="sample-item">FIND patients WHERE age > 60</div>
+                <div class="sample-item">SHOW average heart_rate FOR patients WITH diabetes = yes</div>
+                <div class="sample-item">ALERT IF oxygen_level < 95</div>
+                <div class="sample-item">FIND patients WHERE age < 50 AND asthma = yes</div>
+            </div>
+
+            <div id="results-container" class="results-box">
+                <p class="placeholder-text">Results will appear here after you execute a query.</p>
+            </div>
+        </div>
+         
+        <div class="dashboard-panel">
+            <h2>Patient Database Statistics</h2>
+            <div class="stats-container">
+                <div class="stat-card">
+                    <h3>Total Patients</h3>
+                    <div id="total-patients" class="stat-value">--</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Age Distribution</h3>
+                    <div id="age-distribution" class="stat-value">Min: -- | Avg: -- | Max: --</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Gender Distribution</h3>
+                    <div id="gender-distribution" class="stat-value">--</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Medical Conditions</h3>
+                    <div id="medical-conditions" class="stat-value">--</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="help-section">
+            <h2>HQL Help Reference</h2>
+            <div class="help-content">
+                <div class="command-help">
+                    <h3>FIND Command</h3>
+                    <p>Retrieves patients matching specific criteria.</p>
+                    <code>FIND patients WHERE age > 60</code>
+                    <code>FIND patients WHERE diabetes = yes AND age > 50</code>
+                </div>
+                <div class="command-help">
+                    <h3>SHOW Command</h3>
+                    <p>Calculates aggregated metrics on patient data.</p>
+                    <code>SHOW average heart_rate FOR patients WITH diabetes = yes</code>
+                    <code>SHOW max blood_pressure FOR patients WITH hypertension = yes</code>
+                </div>
+                <div class="command-help">
+                    <h3>ALERT Command</h3>
+                    <p>Identifies patients requiring attention based on specific criteria.</p>
+                    <code>ALERT IF oxygen_level < 90</code>
+                    <code>ALERT IF heart_rate > 100</code>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Health Query Language (HQL) | A domain-specific language for healthcare professionals</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
