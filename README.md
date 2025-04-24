@@ -34,6 +34,81 @@ HQL is implemented as a complete language processing system, consisting of:
 4. **Execution Engine**: Orchestrates the entire process and formats results for display.
 5. **Web & CLI Interfaces**: Provides multiple ways to interact with the system.
 
+### Dry Run Example: Processing an HQL Query
+
+Let's trace how HQL processes the following query:
+
+```
+FIND patients WHERE age > 60 AND blood_pressure > 140
+```
+
+#### Step 1: Lexical Analysis (Lexer)
+
+The lexer breaks down the query into tokens:
+
+```
+[('FIND', 'FIND'),
+ ('PATIENTS', 'patients'),
+ ('WHERE', 'WHERE'),
+ ('IDENTIFIER', 'age'),
+ ('GT', '>'),
+ ('NUMBER', '60'),
+ ('AND', 'AND'),
+ ('IDENTIFIER', 'blood_pressure'),
+ ('GT', '>'),
+ ('NUMBER', '140')]
+```
+
+Each token consists of a token type and value, allowing the parser to understand the structure.
+
+#### Step 2: Syntax Analysis (Parser)
+
+The parser validates the query structure and builds an Abstract Syntax Tree (AST):
+
+```
+{
+  "command": "FIND",
+  "target": "patients",
+  "condition": {
+    "type": "binary_operation",
+    "operator": "AND",
+    "left": {
+      "type": "comparison",
+      "operator": ">",
+      "left": "age",
+      "right": 60
+    },
+    "right": {
+      "type": "comparison",
+      "operator": ">",
+      "left": "blood_pressure",
+      "right": 140
+    }
+  }
+}
+```
+
+This tree represents the logical structure of the query, making it easier for the interpreter to process.
+
+#### Step 3: Semantic Processing (Interpreter)
+
+The interpreter executes the query against patient data:
+
+1. Loads the patient data into a pandas DataFrame
+2. Translates the AST into a pandas filter expression: `(df['age'] > 60) & (df['blood_pressure'] > 140)`
+3. Applies the filter to retrieve matching patients
+4. Returns the filtered dataset containing patients who are over 60 with blood pressure above 140
+
+#### Step 4: Result Presentation
+
+The execution engine formats and presents the results based on the interface being used:
+
+- Command-line: Tabular display of matching patients
+- Web interface: Interactive table with visualization options
+- API mode: Structured JSON response
+
+This pipeline ensures that healthcare professionals can write intuitive queries that are properly processed and return meaningful results.
+
 ## Features of the project
 
 1. **Natural Language-Like Syntax**: Queries written in HQL closely resemble English sentences, making them intuitive for healthcare professionals.
